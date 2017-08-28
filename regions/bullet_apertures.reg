@@ -1,0 +1,9 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+circle(5:35:12.240,-5:20:39.381,2.808") # text={BulletHeads3}
+ellipse(5:35:11.696,-5:20:23.844,1.148",2.417",334.592) # text={BulletHeads1}
+circle(5:35:13.041,-5:20:38.112,3.524") # text={BulletHeads2}
+ellipse(5:35:12.072,-5:20:39.351,5.733",21.681",337.568) # text={BulletTails}
+circle(5:35:13.342,-5:20:54.190,1.876") # text={BulletHeads4}
+circle(5:35:11.594,-5:20:54.398,1.876") # text={OtherOutflow}

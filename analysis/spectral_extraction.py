@@ -17,11 +17,25 @@ else:
 
 
 regions = (
-           pyregion.open(rpath('contsource_locations.reg'))
+           pyregion.open(rpath('contsource_locations.reg'))+
+           pyregion.open(rpath('bullet_apertures.reg'))
           )
 
 for cubename in glob.glob(dpath("*.image.pbcor.fits")):
     print(cubename)
+
+    try:
+        cube = SpectralCube.read(dpath(cubename)).mask_out_bad_beams(threshold=0.1)
+    except Exception as ex:
+        print("Skipping {0} because {1}".format(cubename, ex))
+        continue
+    print(cube)
+
+    stdfpath = spath(cubename.replace(".image.pbcor.fits","_std.fits"))
+    if not os.path.exists(stdfpath):
+        stddev = cube.std(axis=(1,2))
+        stddev.write(stdfpath)
+
     for reg in regions:
 
         name = reg.attr[1]['text']
@@ -36,16 +50,26 @@ for cubename in glob.glob(dpath("*.image.pbcor.fits")):
         if reg.name == 'circle':
             radius = CL[2]
             reg = pyregion.ShapeList([reg])
+            bgSL = pyregion.parse("fk5; circle({0},{1},{2}\")"
+                                  .format(CL[0],
+                                          CL[1],
+                                          2*radius*3600))
+        elif reg.name == 'ellipse':
+            reg = pyregion.ShapeList([reg])
+            bgSL = pyregion.parse("fk5; circle({0},{1},{2}\")"
+                                  .format(CL[0],
+                                          CL[1],
+                                          2*CL[2]*3600,
+                                          2*CL[3]*3600))
         else:
             radius = 0.5
             reg = pyregion.parse("fk5; circle({0},{1},0.5\")"
                                  .format(CL[0], CL[1]))
+            bgSL = pyregion.parse("fk5; circle({0},{1},{2}\")"
+                                  .format(CL[0],
+                                          CL[1],
+                                          2*radius))
 
-        try:
-            cube = SpectralCube.read(dpath(cubename)).mask_out_bad_beams(threshold=0.1)
-        except Exception as ex:
-            print("Skipping {0} because {1}".format(name, ex))
-            continue
         try:
             scube = cube.subcube_from_ds9region(reg)
             if scube.size == 0:
@@ -54,7 +78,7 @@ for cubename in glob.glob(dpath("*.image.pbcor.fits")):
         except ValueError as ex:
             print("Skipping {0} because {1}".format(name, ex))
             continue
-        print(cube)
+
         log.info("Source name: {0}  filename: {1}".format(name,fname))
         print(scube)
         spsum = scube.sum(axis=(1,2))
@@ -78,10 +102,6 @@ for cubename in glob.glob(dpath("*.image.pbcor.fits")):
                     overwrite=True)
         print(spath("{1}_{0}.fits".format(suffix, fname, )))
 
-        bgSL = pyregion.parse("fk5; circle({0},{1},{2}\")"
-                              .format(CL[0],
-                                      CL[1],
-                                      2*radius))
         bgsc = cube.subcube_from_ds9region(bgSL)
         print(bgsc)
         npix = np.count_nonzero(np.isfinite(bgsc[1000,:,:]))

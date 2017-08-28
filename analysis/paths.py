@@ -10,7 +10,7 @@ analysispath = os.path.join(root, 'analysis/')
 plotcodepath = os.path.join(root, 'plot_codes/')
 observingpath = os.path.join(root, 'observing/')
 tablepath = os.path.join(root, 'tables/')
-spectrum_path = os.path.join(root, 'FITS/12m/spectra')
+spectrum_path = os.path.join(root, 'FITS/spectra')
 merge_spectrum_path = os.path.join(root, 'FITS/merge/spectra')
 
 def path(x, basepath):
