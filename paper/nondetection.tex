@@ -7,9 +7,11 @@
 \title{FeO}
 \titlerunning{FeO}
 \authorrunning{Ginsburg et al}
+\begin{abstract}
 We report the nondetection of FeO in the Orion `Bullets'.
+\end{abstract}
 
-Introduction
+\section{Introduction}
 
 Iron is among the most abundant atoms in the universe, with a greater abundance
 than any of the other heavy elements (the \emph{real} metals).  However,
@@ -108,8 +110,13 @@ In Section \ref{sec:observations}, we describe the observational setup.
 \section{Observations}
 
 We observed the northern Orion bullets with ALMA in bands 3 and 4.
-Our spectral setup included 8 windows in Band 3 and 10 in Band 4.
+The observing setup is described in Table \ref{tab:observations}.
+Our spectral setup included 8 windows in Band 3 and 10 in Band 4;
+the spectral setup is described in Table \ref{tab:lines}.
 
+\input{obs_metadata.tex}
+
+\input{lines_tbl.tex}
 
 We achieved a continuum sensitivity varying from 0.04-0.2 mJy depending on the
 weighting scheme used to produce the continuum images (see Table
@@ -117,7 +124,16 @@ weighting scheme used to produce the continuum images (see Table
 
 \input{rms_table.tex}
 
-\input{lines_tbl.tex}
+\section{Results}
+\subsection{Lines}
+We report only nondetections of FeO.  We searched the cubes channel-by-channel
+and performed spatial averages over apertures approximately matching the
+near-infrared \hh and [Fe II] images.  The spatial averages were performed
+on each of the robust-weighted -2, 0, and 2 images.
 
-\input{obs_metadata.tex}
+We detected emission in the \cyanoacetylene J=12-11 and CH$_3$CCH 9-8 lines,
+but this emission was highly extended and not associated with outflow features.
+
+
+
 \end{document}
