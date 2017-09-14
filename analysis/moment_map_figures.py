@@ -29,7 +29,7 @@ for ii,line in enumerate(lines):
     fig = pl.figure(1)
     fig.clf()
     ax = fig.add_subplot(111, projection=mywcs)
-    ax.imshow(mom0.data)
+    im = ax.imshow(mom0[0].data, cmap='gray_r', interpolation='nearest', origin='lower',)
 
     lon = ax.coords['RA']
     lat = ax.coords['Dec']
@@ -39,13 +39,13 @@ for ii,line in enumerate(lines):
     lon.set_major_formatter('hh:mm:ss.s')
     lat.set_major_formatter('dd:mm:ss.s')
 
-    pl.colorbar()
+    pl.colorbar(mappable=im)
 
     fig.savefig(paths.fpath('{0}_moment0.png'.format(line['species_txt'])))
 
     fig.clf()
     ax = fig.add_subplot(111, projection=mywcs)
-    ax.imshow(mx.data)
+    im = ax.imshow(mx[0].data, cmap='gray_r', interpolation='nearest', origin='lower')
 
     lon = ax.coords['RA']
     lat = ax.coords['Dec']
@@ -55,6 +55,6 @@ for ii,line in enumerate(lines):
     lon.set_major_formatter('hh:mm:ss.s')
     lat.set_major_formatter('dd:mm:ss.s')
 
-    pl.colorbar()
+    pl.colorbar(mappable=im)
 
     fig.savefig(paths.fpath('{0}_max.png'.format(line['species_txt'])))
