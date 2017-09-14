@@ -10,8 +10,8 @@ linenames = ["{0} {1}".format(x,y) for x,y in zip(lines['species'], lines['qn'])
 
 for ii,line in enumerate(lines):
 
-    if line['diffuse'] == 'n':
-        continue
+    #if line['diffuse'] == 'n':
+    #    continue
 
     band = int(line['band']) if line['band'] != 'None' else None
     if band is None:
@@ -29,7 +29,7 @@ for ii,line in enumerate(lines):
                                     velocity_convention='radio',
                                     rest_value=line['freq']*u.GHz)
                                 
-    vslab = vcube.spectral_slab(5*u.km/u.s, 13*u.km/u.s)
+    vslab = vcube.spectral_slab(5*u.km/u.s, 13*u.km/u.s).minimal_subcube()
     kvslab = vslab.to(u.K)
 
     mom0 = kvslab.moment0(axis=0)

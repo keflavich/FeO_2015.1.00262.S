@@ -133,6 +133,8 @@ on each of the robust-weighted -2, 0, and 2 images.
 
 We detected emission in the \cyanoacetylene J=12-11 and CH$_3$CCH 9-8 lines,
 but this emission was highly extended and not associated with outflow features.
+Peak intensity images of these lines are shown in Figure
+\ref{fig:detected_pkintensity}.
 
 
 \Figure{figures/aperture_overlays.png}
@@ -156,5 +158,26 @@ be detected near the systemic velocity $v_{lsr}\approx9$ \kms.}
 {Figures showing the peak intensity of the \cyanoacetylene and CH$_3$CCH $9_0-8_0$ lines
 in the observed region.  Both have clear structure detected at reasonably high significance.}
 {fig:detected_pkintensity}{1}{\textwidth}
+
+\section{Discussion}
+We predict the expected emission rate in the J=5-4 line in a few different ways.
+First, we assume that the FeO molecules will be subthermally populated.  We
+asume FeO's collisional cross-section is $\sigma_{FeO}\sim0.5$ nm$^2$, i.e., it
+is the same order of magnitude as other molecules \citep[the FeO bond length is
+$\approx1.63\AA$][]{Tossel1980,Engelking1977}.  The collision rate coefficient
+is then (approximately) $\sigma_{FeO} v$, where $v=\sqrt{k_B T / m}$ is the
+sound speed, or $C \approx 8.6\ee{-11} (T/10)^{-1/2}$ cm$^3$\pers.  The
+Einstein A$_{ij}$ coefficients for the J=5-4 lines are $A_{ij}\sim9\ee{-4}$
+\pers, yielding a critical density estimate $A_{ij}/C_{ij} \approx 10^7 (T/10 K)^{-1/2}$
+\percc.  While such densities may occur within the shocks of the outflows, we
+expect most of the volume to reside at lower densities, typically $n\sim10^4$
+\percc.
+
+\begin{equation}
+    N_\gamma = n(H) / C_{ij} N(H) (X_{FeO})
+\end{equation}
+where $C_{ij}$ is the collisional excitation rate [cm$^3$ s$^{-1}$], $n(H)$ is
+the hydrogen number density [cm$^{-3}$], $N(H)$ is the hydrogen column density
+[cm$^{-2}$], and $X_{FeO}$ is the FeO abundance relative to hydrogen.
 
 \end{document}
